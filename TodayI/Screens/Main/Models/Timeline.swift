@@ -20,8 +20,11 @@ struct Timeline: Identifiable, Hashable {
   
   var currentDate: Date {
     if type == .months {
-      guard let month = Month(rawValue: title.lowercased()),
-              let date = calendar.date(from: DateComponents(year: selectedYear, month: month.number)) else { return Date() }
+      guard let month = Month(rawValue: title),
+              let date = calendar.date(from: DateComponents(year: selectedYear, month: month.number)) else { 
+        return Date()
+      }
+      print("Current date \(date)")
       return date
     } else {
       guard let date = calendar.date(from: DateComponents(year: selectedYear)) else { return Date() }
